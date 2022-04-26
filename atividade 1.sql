@@ -1,6 +1,6 @@
 -- CRIAR TABELAS -- 
 
--- PAÍS -- OK
+-- PAÍS
 create table TB_PAIS (  
   id_pais number not null,
   nm_pais varchar2 (50) not null,  
@@ -8,7 +8,7 @@ create table TB_PAIS (
   constraint pk_pais primary key (id_pais)  
 );
 
--- EQUIPE - relacionamento com PAÍS -- OK
+-- EQUIPE - relacionamento com PAÍS
 create table TB_EQUIPE (  
  id_equipe number not null primary key,
  nm_equipe varchar2 (50) not null,  
@@ -16,7 +16,7 @@ create table TB_EQUIPE (
  constraint fk_equipe_pais foreign key (id_pais) references TB_PAIS (id_pais) 
 );
 
--- PILOTO - relacionamento com PAÍS e EQUIPE -- OK
+-- PILOTO - relacionamento com PAÍS e EQUIPE
 
 create table TB_PILOTO (
  id_piloto number PRIMARY KEY,
@@ -28,7 +28,7 @@ create table TB_PILOTO (
  constraint fk_piloto_equipe foreign key (id_equipe) references TB_EQUIPE (id_equipe)
 );
 
--- CIRCUITO - relacionamento com PAÍSES -- OK
+-- CIRCUITO - relacionamento com PAÍSES
 
 create table TB_CIRCUITO (  
   id_circuito number not null PRIMARY KEY,
@@ -38,7 +38,7 @@ create table TB_CIRCUITO (
   constraint fk_circuito_pais foreign key (id_pais) references TB_PAIS (id_pais) 
 );
 
--- PROVA - relacionamento com CIRCUITO -- OK
+-- PROVA - relacionamento com CIRCUITO
 
 create table TB_PROVA (  
   id_prova number not null PRIMARY KEY,
@@ -49,7 +49,7 @@ create table TB_PROVA (
   constraint fk_prova_circuito foreign key (id_circuito) references TB_CIRCUITO (id_circuito) 
 );
 
--- RESULTADO -- OK
+-- RESULTADO
 create table TB_RESULTADO (
   id_prova number not null,
   id_piloto number not null,
@@ -63,7 +63,7 @@ create table TB_RESULTADO (
 
 -- POPULAR TABELAS --
 
--- PAÍS -- OK
+-- PAÍS
 insert into TB_PAIS (id_pais, nm_pais, nr_populacao) values (101, 'Italia', 60000000);
 insert into TB_PAIS (id_pais, nm_pais, nr_populacao) values (102, 'Alemanha',83000000);
 insert into TB_PAIS (id_pais, nm_pais, nr_populacao) values (103, 'Estados Unidos', 32800000);
@@ -75,7 +75,7 @@ insert into TB_PAIS (id_pais, nm_pais, nr_populacao) values (108, 'França', 670
 insert into TB_PAIS (id_pais, nm_pais, nr_populacao) values (109, 'Austrália', 26000000);
 insert into TB_PAIS (id_pais, nm_pais, nr_populacao) values (110, 'Finlândia', 212000000);
 
--- EQUIPE -- OK
+-- EQUIPE
 insert into TB_EQUIPE values (501, 'Ferrari', 101);
 insert into TB_EQUIPE values (502, 'Alfa Romeo', 101);
 insert into TB_EQUIPE values (503, 'Mercedes-Benz', 102);
@@ -97,7 +97,7 @@ insert into TB_EQUIPE values (518, 'Mercedes-Benz', 109);
 insert into TB_EQUIPE values (519, 'Alfa Romeo', 110);
 insert into TB_EQUIPE values (520, 'Ferrari', 110);
 
- -- PILOTO -- OK
+ -- PILOTO
 insert into TB_PILOTO (id_piloto,nm_piloto,dt_nascimento,id_pais,id_equipe) 
             values (1, 'Giada Daniele', TO_DATE('13/08/1990', 'DD/MM/YYYY'), 101, 501);
 insert into TB_PILOTO (id_piloto,nm_piloto,dt_nascimento,id_pais,id_equipe) 
@@ -139,7 +139,7 @@ insert into TB_PILOTO (id_piloto,nm_piloto,dt_nascimento,id_pais,id_equipe)
 insert into TB_PILOTO (id_piloto,nm_piloto,dt_nascimento,id_pais,id_equipe) 
             values (20, 'Mick Schumacher', TO_DATE('22/03/1999', 'DD/MM/YYYY'), 110, 520);
 
--- CIRCUITO -- OK
+-- CIRCUITO
 insert into TB_CIRCUITO (id_circuito,nm_circuito,nr_extensão,id_pais) 
             values (201, 'Circuito de Albert Park', 5303, 109);
 insert into TB_CIRCUITO (id_circuito,nm_circuito,nr_extensão,id_pais) 
@@ -149,7 +149,7 @@ insert into TB_CIRCUITO (id_circuito,nm_circuito,nr_extensão,id_pais)
 insert into TB_CIRCUITO (id_circuito,nm_circuito,nr_extensão,id_pais) 
             values (204, 'Circuito de Silverstone', 5891, 106);
 
--- PROVA -- OK
+-- PROVA
 insert into TB_PROVA (id_prova, nm_prova, dt_prova, nm_situação,id_circuito) 
             values (301, '2022 Australiano F1 GP', TO_DATE('10/04/2022', 'DD/MM/YYYY'), 'Molhado', 201);
 insert into TB_PROVA (id_prova,nm_prova, dt_prova, nm_situação,id_circuito) 
@@ -159,7 +159,7 @@ insert into TB_PROVA (id_prova,nm_prova, dt_prova, nm_situação,id_circuito)
 insert into TB_PROVA (id_prova,nm_prova, dt_prova, nm_situação,id_circuito) 
             values (304, '2022 British F1 GP', TO_DATE('23/02/2022', 'DD/MM/YYYY'), 'Molhado', 204);
 
--- RESULTADO -- OK
+-- RESULTADO
 
 insert into TB_RESULTADO (id_prova,id_piloto, nr_tempo_prova,nr_coloc_final,nr_posicao_grid,nr_melhor_volta) 
             values (301, 1, '01: 27: 46', 1, 1, 58);
