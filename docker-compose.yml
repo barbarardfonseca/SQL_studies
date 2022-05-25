@@ -1,0 +1,38 @@
+version: "3.3"
+
+services:
+    postgres:
+      image: postgres
+      environment:
+        - POSTGRES_PASSWORD=123456
+        - POSTGRES_USER=admin
+        - POSTGRES_DB=teste
+      ports:
+        - 5432:5432
+      volumes:
+        - ./db-data:/var/lib/postgresql/data
+      networks:
+        - postgres-network
+    metabase:
+      volumes:
+      # setup your SQLITE db (optional)
+        - /PATH/TO/SQLITE/:/metabase
+        - ./metabase-data:/metabase-data
+      environment:
+        - MB_DB_FILE=/metabase-data/metabase.db
+        - MB_DB_TYPE=postgres
+        - MB_DB_DBNAME=teste
+        - MB_DB_PORT=5432
+        - MB_DB_USER=admin
+        - MB_DB_PASS=123456
+        - MB_DB_HOST=postgres
+      ports:
+        - 3000:3000
+      image: metabase/metabase
+      depends_on: 
+        - postgres
+      networks:
+        - postgres-network
+networks:
+  postgres-network:
+    driver: bridge
